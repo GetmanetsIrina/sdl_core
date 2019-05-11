@@ -718,6 +718,12 @@
                         "FULL",
                         "LIMITED",
                         "NONE"]
+                    },
+                    "ReleaseInteriorVehicleDataModule": {
+                        "hmi_levels": ["BACKGROUND",
+                        "FULL",
+                        "LIMITED",
+                        "NONE"]
                     }
                 }
             },
