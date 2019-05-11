@@ -724,6 +724,12 @@
                         "FULL",
                         "LIMITED",
                         "NONE"]
+                    },
+                    "GetInteriorVehicleDataConsent": {
+                        "hmi_levels": ["BACKGROUND",
+                        "FULL",
+                        "LIMITED",
+                        "NONE"]
                     }
                 }
             },
