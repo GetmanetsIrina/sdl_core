@@ -477,6 +477,16 @@ enum FunctionID {
   ShowAppMenuID = 59,
 
   /**
+   * @brief GetInteriorVehicleDataConsentID.
+   */
+  GetInteriorVehicleDataConsentID = 62,
+
+  /**
+   * @brief ReleaseInteriorVehicleDataModuleID.
+   */
+  ReleaseInteriorVehicleDataModuleID = 63,
+
+  /**
    * @brief OnHMIStatusID.
    */
   OnHMIStatusID = 32768,
