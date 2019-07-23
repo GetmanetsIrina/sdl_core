@@ -42,6 +42,7 @@
 
 #include "application_manager/application.h"
 #include "application_manager/policies/policy_encryption_flag_getter.h"
+#include "application_manager/policies/custom_vehicle_data_povider.h"
 #include "application_manager/policies/policy_handler_observer.h"
 #include "interfaces/MOBILE_API.h"
 #include "policy/cache_manager_interface.h"
@@ -59,7 +60,7 @@ typedef std::shared_ptr<utils::Callable> StatusNotifier;
 typedef std::shared_ptr<PolicyEncryptionFlagGetterInterface>
     PolicyEncryptionFlagGetterInterfaceSPtr;
 
-class PolicyHandlerInterface {
+class PolicyHandlerInterface : public VehicleDataItemProvider {
  public:
   virtual ~PolicyHandlerInterface() {}
 
@@ -114,6 +115,7 @@ class PolicyHandlerInterface {
                              EndpointUrls& out_end_points) = 0;
   virtual void GetUpdateUrls(const uint32_t service_type,
                              EndpointUrls& out_end_points) = 0;
+  virtual policy_table::ModuleConfig GetModuleConfigData() const = 0;
   virtual std::string GetLockScreenIconUrl() const = 0;
   virtual std::string GetIconUrl(const std::string& policy_app_id) const = 0;
   virtual uint32_t NextRetryTimeout() = 0;
@@ -460,12 +462,6 @@ class PolicyHandlerInterface {
    */
   virtual const std::vector<std::string> GetAppRequestSubTypes(
       const std::string& policy_app_id) const = 0;
-
-  /**
-   * @brief Gets vehicle information
-   * @return Structure with vehicle information
-   */
-  virtual const VehicleInfo GetVehicleInfo() const = 0;
 
   /**
    * @brief Get a list of enabled cloud applications
