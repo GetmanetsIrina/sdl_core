@@ -193,6 +193,9 @@ void RAManagerTest::CheckResultWithHMILevelAndAccessMode(
 
   EXPECT_EQ(rc_rpc_plugin::AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType1, kModuleId, kAppId1));
+
+  ra_manager.SetResourceAcquired(kModuleType1, kModuleId, kAppId1);
+
   EXPECT_CALL(mock_app_mngr_, application(kAppId2))
       .WillOnce(Return(mock_app_2_));
   EXPECT_CALL(*mock_app_2_, hmi_level()).WillOnce(Return(app_level));
@@ -325,6 +328,8 @@ TEST_F(RAManagerTest,
   EXPECT_EQ(AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType1, kModuleId, kAppId1));
 
+  ra_manager.SetResourceAcquired(kModuleType1, kModuleId, kAppId1);
+
   // Act
   ra_manager.OnDriverDisallowed(kModuleType1, kModuleId, kAppId2);
 
@@ -369,6 +374,8 @@ TEST_F(RAManagerTest, AnotherAppExit_NoReleaseResource) {
 
   EXPECT_EQ(rc_rpc_plugin::AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType1, kModuleId, kAppId1));
+
+  ra_manager.SetResourceAcquired(kModuleType1, kModuleId, kAppId1);
 
   EXPECT_CALL(mock_app_mngr_, application(kAppId2))
       .WillRepeatedly(Return(mock_app_2_));
@@ -424,6 +431,8 @@ TEST_F(RAManagerTest, AnotherAppUnregistered_NoReleaseResource) {
       .WillOnce(Return(mock_app_1_));
   EXPECT_EQ(rc_rpc_plugin::AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType1, kModuleId, kAppId1));
+
+  ra_manager.SetResourceAcquired(kModuleType1, kModuleId, kAppId1);
 
   EXPECT_CALL(mock_app_mngr_, application(kAppId1))
       .WillRepeatedly(Return(mock_app_2_));
@@ -517,8 +526,12 @@ TEST_F(RAManagerTest, AppGotRevokedModulesWithPTU_ReleaseRevokedResource) {
 
   EXPECT_EQ(rc_rpc_plugin::AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType1, kModuleId, kAppId1));
+
+  ra_manager.SetResourceAcquired(kModuleType1, kModuleId, kAppId1);
+
   EXPECT_EQ(rc_rpc_plugin::AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType2, kModuleId, kAppId1));
+  ra_manager.SetResourceAcquired(kModuleType2, kModuleId, kAppId1);
 
   application_manager::ApplicationSet apps;
   apps.insert(mock_app_1_);
@@ -718,6 +731,8 @@ TEST_F(RAManagerTest, OnRCStatus_ModuleAllocation) {
   EXPECT_EQ(rc_rpc_plugin::AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType1, kModuleId, kAppId1));
 
+  ra_manager.SetResourceAcquired(kModuleType1, kModuleId, kAppId1);
+
   application_manager::commands::MessageSharedPtr message_to_mob;
   EXPECT_CALL(mock_rpc_service_, SendMessageToMobile(_, false))
       .WillOnce(SaveArg<0>(&message_to_mob));
@@ -792,6 +807,8 @@ TEST_F(RAManagerTest,
   EXPECT_EQ(AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType1, kModuleId, kAppId1));
 
+  ra_manager.SetResourceAcquired(kModuleType1, kModuleId, kAppId1);
+
   ON_CALL(*mock_app_2_, hmi_level())
       .WillByDefault(Return(mobile_apis::HMILevel::HMI_FULL));
   ON_CALL(mock_rc_capabilities_manager_, IsMultipleAccessAllowed(_))
@@ -832,6 +849,8 @@ TEST_F(RAManagerTest,
   EXPECT_EQ(AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType1, kModuleId, kAppId1));
 
+  ra_manager.SetResourceAcquired(kModuleType1, kModuleId, kAppId1);
+
   ra_manager.SetAccessMode(hmi_apis::Common_RCAccessMode::AUTO_DENY);
 
   ON_CALL(*mock_app_2_, hmi_level())
@@ -851,6 +870,8 @@ TEST_F(RAManagerTest,
 
   EXPECT_EQ(AcquireResult::ALLOWED,
             ra_manager.AcquireResource(kModuleType1, kModuleId, kAppId1));
+
+  ra_manager.SetResourceAcquired(kModuleType1, kModuleId, kAppId1);
 
   ra_manager.SetAccessMode(hmi_apis::Common_RCAccessMode::ASK_DRIVER);
 

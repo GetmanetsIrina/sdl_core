@@ -172,9 +172,33 @@ void ButtonPressRequest::on_event(const app_mngr::event_engine::Event& event) {
     result = false;
     result_code = mobile_apis::Result::GENERIC_ERROR;
   }
+
+  const std::string module_type = ModuleType();
+  const std::string module_id = ModuleId();
+
+  const rc_rpc_types::ModuleUid resource{module_type, module_id};
+  auto app = application_manager_.application(connection_key());
+  const auto app_id = app->app_id();
+
+  bool is_resource_aquired = false;
+
+  if (result && !resource_allocation_manager_.IsResourceAlreadyAcquiredByApp(
+                    resource, app_id)) {
+    resource_allocation_manager_.SetResourceAcquired(
+        module_type, module_id, app_id);
+
+    is_resource_aquired = true;
+  }
+
   std::string response_info;
   GetInfo(message, response_info);
   SendResponse(result, result_code, response_info.c_str());
+
+  if (is_resource_aquired) {
+    resource_allocation_manager_.SendOnRCStatusNotifications(
+        NotificationTrigger::MODULE_ALLOCATION,
+        std::shared_ptr<application_manager::Application>());
+  }
 }
 
 std::string ButtonPressRequest::ModuleType() const {
