@@ -65,7 +65,7 @@ enum class ModuleConsent {
 enum class ModuleConsentState {
   NOT_EXISTS = 0, /**< Consent is absent for specified module resource */
   EXPIRED,        /**< Module resource is expired */
-  ACTUAL          /**< Module resource isn't expired */
+  ACTIVE          /**< Module resource isn't expired */
 };
 
 /**

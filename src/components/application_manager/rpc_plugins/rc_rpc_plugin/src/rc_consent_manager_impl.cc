@@ -144,7 +144,7 @@ rc_rpc_types::ModuleConsentState RCConsentManagerImpl::CheckModuleConsentState(
 
   return (past_period_in_days >= period_for_expiring)
              ? rc_rpc_types::ModuleConsentState::EXPIRED
-             : rc_rpc_types::ModuleConsentState::ACTUAL;
+             : rc_rpc_types::ModuleConsentState::ACTIVE;
 }
 
 void RCConsentManagerImpl::RemoveDeviceExpiredConsents(Json::Value& device) {
