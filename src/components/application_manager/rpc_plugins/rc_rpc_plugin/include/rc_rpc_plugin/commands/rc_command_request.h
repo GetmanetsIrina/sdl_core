@@ -146,7 +146,7 @@ class RCCommandRequest : public app_mngr::commands::CommandRequestImpl {
 
   /**
    * @brief Extracts ModuleId from command message. Each inherited class should
-   * implement his own functionality
+   * implement its own functionality
    *
    * @return ModuleId as string.
    */
