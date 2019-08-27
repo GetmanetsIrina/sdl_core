@@ -73,6 +73,7 @@ class InteriorDataManager {
   /**
    * @brief StoreRequestToHMITime save information and time stamp of
    * current interior data subscriptions
+   * @param module Module resource (module_type + module_id)
    */
   virtual void StoreRequestToHMITime(const ModuleUid& module) = 0;
 

@@ -407,7 +407,7 @@ TEST_F(GetInteriorVehicleDataRequestTest,
   command->Run();
 
   // Assert
-  EXPECT_FALSE(rc_app_extention_->IsSubscribedToInteriorVehicleData(
+  EXPECT_FALSE(rc_app_extention_->IsSubscribedToInteriorVehicleDataOfType(
       enums_value::kRadio));
   EXPECT_EQ((*command_result)[application_manager::strings::msg_params]
                              [message_params::kModuleData]
@@ -606,7 +606,8 @@ TEST_F(GetInteriorVehicleDataRequestTest,
 TEST_F(GetInteriorVehicleDataRequestTest,
        Execute_ExpectRejectDuToRequestLimitation_NoCahce) {
   // Arrange
-  rc_app_extention_->UnsubscribeFromInteriorVehicleData(enums_value::kRadio);
+  rc_app_extention_->UnsubscribeFromInteriorVehicleDataOfType(
+      enums_value::kRadio);
   MessageSharedPtr mobile_message = CreateBasicMessage();
   (*mobile_message)[application_manager::strings::msg_params]
                    [message_params::kModuleType] = module_eType;

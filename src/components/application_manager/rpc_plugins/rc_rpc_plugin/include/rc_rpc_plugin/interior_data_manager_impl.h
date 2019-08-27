@@ -85,11 +85,11 @@ class InteriorDataManagerImpl : public InteriorDataManager {
   /**
    * @brief UnsubscribeFromInteriorVehicleData remove module from cache and
    * send RC.GetInteriorVehicleData(subscribe=false) to HMI
-   * @param module module that need to be unsubscribed
+   * @param module module that needs to be unsubscribed
    */
   void UnsubscribeFromInteriorVehicleData(const ModuleUid& module);
 
-  void UnsubscribeFromInteriorVehicleData(const std::string& module_type);
+  void UnsubscribeFromInteriorVehicleDataOfType(const std::string& module_type);
 
   void ClearOldRequestsToHMIHistory();
   /**

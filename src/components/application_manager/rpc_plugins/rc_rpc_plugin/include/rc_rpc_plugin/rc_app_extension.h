@@ -154,7 +154,7 @@ class RCAppExtension : public application_manager::AppExtension {
    */
   void UnsubscribeFromInteriorVehicleData(const ModuleUid& module);
 
-  void UnsubscribeFromInteriorVehicleData(const std::string& module_type);
+  void UnsubscribeFromInteriorVehicleDataOfType(const std::string& module_type);
 
   /**
    * @brief UnsubscribeFromInteriorVehicleData removes all subscriptions for
@@ -168,7 +168,7 @@ class RCAppExtension : public application_manager::AppExtension {
    */
   bool IsSubscribedToInteriorVehicleData(const ModuleUid& module);
 
-  bool IsSubscribedToInteriorVehicleData(const std::string& module_type);
+  bool IsSubscribedToInteriorVehicleDataOfType(const std::string& module_type);
 
   /**
    * @brief get list of subscriptions of application

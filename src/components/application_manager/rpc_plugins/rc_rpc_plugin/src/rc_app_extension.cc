@@ -48,7 +48,7 @@ void RCAppExtension::UnsubscribeFromInteriorVehicleData(
   subscribed_interior_vehicle_data_.erase(module);
 }
 
-void RCAppExtension::UnsubscribeFromInteriorVehicleData(
+void RCAppExtension::UnsubscribeFromInteriorVehicleDataOfType(
     const std::string& module_type) {
   for (auto& item : subscribed_interior_vehicle_data_) {
     if (module_type == item.first) {
@@ -61,7 +61,7 @@ void RCAppExtension::UnsubscribeFromInteriorVehicleData() {
   subscribed_interior_vehicle_data_.clear();
 }
 
-bool RCAppExtension::IsSubscribedToInteriorVehicleData(
+bool RCAppExtension::IsSubscribedToInteriorVehicleDataOfType(
     const std::string& module_type) {
   auto it = std::find_if(subscribed_interior_vehicle_data_.begin(),
                          subscribed_interior_vehicle_data_.end(),

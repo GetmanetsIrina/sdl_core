@@ -156,8 +156,9 @@ smart_objects::SmartObject InteriorDataCacheImpl::Retrieve(
   auto it = cached_data_.find(module);
   if (it == cached_data_.end()) {
     LOG4CXX_WARN(logger_,
-                 "Module " << module.first << " " << module.second
-                           << " was not found in cache");
+                 "Module with type: " << module.first
+                                      << " and id: " << module.second
+                                      << " was not found in cache");
     return smart_objects::SmartObject(smart_objects::SmartType_Null);
   }
   LOG4CXX_TRACE(

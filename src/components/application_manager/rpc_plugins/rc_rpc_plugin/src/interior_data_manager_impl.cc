@@ -44,7 +44,8 @@ void InteriorDataManagerImpl::OnDisablingRC() {
   }
   for (auto& module : subscribed_modules) {
     LOG4CXX_TRACE(logger_,
-                  "unsubscribe from: " << module.first << " " << module.second);
+                  "unsubscribe from module type: " << module.first
+                                                   << " id: " << module.second);
     UnsubscribeFromInteriorVehicleData(module);
   }
 }
@@ -82,9 +83,11 @@ void InteriorDataManagerImpl::UpdateHMISubscriptionsOnPolicyUpdated() {
                         std::back_inserter(disallowed_modules));
 
     std::sort(disallowed_modules.begin(), disallowed_modules.end());
-    disallowed_modules.erase(
-        std::unique(disallowed_modules.begin(), disallowed_modules.end()),
-        disallowed_modules.end());
+
+    auto unique_result =
+        std::unique(disallowed_modules.begin(), disallowed_modules.end());
+
+    disallowed_modules.erase(unique_result, disallowed_modules.end());
     apps_disallowed_modules[pair.first] = disallowed_modules;
   }
 
@@ -92,11 +95,11 @@ void InteriorDataManagerImpl::UpdateHMISubscriptionsOnPolicyUpdated() {
     auto& app = pair.first;
     auto rc_extension = RCHelpers::GetRCExtension(*app);
     for (const auto& module_type : pair.second) {
-      rc_extension->UnsubscribeFromInteriorVehicleData(module_type);
+      rc_extension->UnsubscribeFromInteriorVehicleDataOfType(module_type);
       auto apps_subscribed =
           RCHelpers::AppsSubscribedToModuleType(app_mngr_, module_type);
       if (apps_subscribed.empty()) {
-        UnsubscribeFromInteriorVehicleData(module_type);
+        UnsubscribeFromInteriorVehicleDataOfType(module_type);
       }
     }
   }
@@ -125,13 +128,13 @@ void InteriorDataManagerImpl::UnsubscribeFromInteriorVehicleData(
   cache_.Remove(module);
   auto unsubscribe_request = RCHelpers::CreateUnsubscribeRequestToHMI(
       module, app_mngr_.GetNextHMICorrelationID());
-  LOG4CXX_DEBUG(
-      logger_,
-      "Send Unsubscribe from " << module.first << " " << module.second);
+  LOG4CXX_DEBUG(logger_,
+                "Send Unsubscribe from module type: " << module.first << " id: "
+                                                      << module.second);
   rpc_service_.ManageHMICommand(unsubscribe_request);
 }
 
-void InteriorDataManagerImpl::UnsubscribeFromInteriorVehicleData(
+void InteriorDataManagerImpl::UnsubscribeFromInteriorVehicleDataOfType(
     const std::string& module_type) {
   const auto& modules = cache_.GetCachedModulesByType(module_type);
 
@@ -139,9 +142,9 @@ void InteriorDataManagerImpl::UnsubscribeFromInteriorVehicleData(
     cache_.Remove(module);
     auto unsubscribe_request = RCHelpers::CreateUnsubscribeRequestToHMI(
         module, app_mngr_.GetNextHMICorrelationID());
-    LOG4CXX_DEBUG(
-        logger_,
-        "Send Unsubscribe from " << module.first << " " << module.second);
+    LOG4CXX_DEBUG(logger_,
+                  "Send Unsubscribe from module type: "
+                      << module.first << " id: " << module.second);
     rpc_service_.ManageHMICommand(unsubscribe_request);
   }
 }

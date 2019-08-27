@@ -230,7 +230,7 @@ RCHelpers::AppsSubscribedToModuleType(
   for (auto& app : rc_apps) {
     auto rc_ext = RCHelpers::GetRCExtension(*app);
     DCHECK_OR_RETURN(rc_ext, result);
-    if (rc_ext->IsSubscribedToInteriorVehicleData(module_type)) {
+    if (rc_ext->IsSubscribedToInteriorVehicleDataOfType(module_type)) {
       result.push_back(app);
     }
   }
