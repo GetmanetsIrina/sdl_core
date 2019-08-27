@@ -59,7 +59,7 @@ class GetInteriorVehicleDataConsentResponse
 
   void Run() OVERRIDE;
 
-  ~GetInteriorVehicleDataConsentResponse() OVERRIDE;
+  ~GetInteriorVehicleDataConsentResponse();
 };
 
 }  // namespace commands
