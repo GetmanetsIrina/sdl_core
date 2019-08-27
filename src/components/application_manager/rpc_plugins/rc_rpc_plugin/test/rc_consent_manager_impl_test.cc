@@ -87,7 +87,7 @@ class RCConsentManagerImplTest : public ::testing::Test {
 
     ON_CALL(mock_app_mngr_, get_settings())
         .WillByDefault(ReturnRef(mock_app_mnrg_settings_));
-    ON_CALL(mock_app_mnrg_settings_, period_for_consent_expire())
+    ON_CALL(mock_app_mnrg_settings_, period_for_consent_expiration())
         .WillByDefault(Return(kPeriodOfConsentExpired));
   }
 

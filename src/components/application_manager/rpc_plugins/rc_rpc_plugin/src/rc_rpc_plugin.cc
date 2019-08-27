@@ -56,7 +56,7 @@ bool RCRPCPlugin::Init(
   rc_consent_manager_.reset(new rc_rpc_plugin::RCConsentManagerImpl(
       last_state,
       app_manager,
-      app_manager.get_settings().period_for_consent_expire()));
+      app_manager.get_settings().period_for_consent_expiration()));
   interior_data_cache_.reset(new InteriorDataCacheImpl());
   interior_data_manager_.reset(new InteriorDataManagerImpl(
       *this, *interior_data_cache_, app_manager, rpc_service));

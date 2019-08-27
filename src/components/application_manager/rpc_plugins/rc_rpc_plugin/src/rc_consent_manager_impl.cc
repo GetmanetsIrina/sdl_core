@@ -129,7 +129,7 @@ rc_rpc_types::ModuleConsentState RCConsentManagerImpl::CheckModuleConsentState(
   }
 
   const uint32_t period_for_expiring =
-      app_manager_.get_settings().period_for_consent_expire();
+      app_manager_.get_settings().period_for_consent_expiration();
 
   const time_t consent_date = static_cast<time_t>(
       module_consent[message_params::kConsentDate].asUInt());
