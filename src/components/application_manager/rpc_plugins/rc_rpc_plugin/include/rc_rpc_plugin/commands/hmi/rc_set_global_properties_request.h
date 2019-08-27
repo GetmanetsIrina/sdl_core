@@ -56,7 +56,7 @@ class RCSetGlobalPropertiesRequest : public app_mngr::commands::RequestToHMI {
   /**
    * @brief Execute command
    */
-  void Run();
+  void Run() OVERRIDE;
 
   ~RCSetGlobalPropertiesRequest();
 };
