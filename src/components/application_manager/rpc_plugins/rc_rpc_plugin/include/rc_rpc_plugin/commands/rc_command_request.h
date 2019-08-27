@@ -182,6 +182,8 @@ class RCCommandRequest : public app_mngr::commands::CommandRequestImpl {
   /**
    * @brief SendGetUserConsent sends consent request to HMI
    * @param module_type Resource name
+   * @param module_ids Array of module IDs of the module type that needed user
+   * consent for acquiring their resources
    */
   void SendGetUserConsent(const std::string& module_type,
                           const smart_objects::SmartObject& module_ids);
@@ -204,9 +206,9 @@ class RCCommandRequest : public app_mngr::commands::CommandRequestImpl {
                             const uint32_t app_id);
   /**
    * @brief Processes ASK_DRIVE Mode. Tries to retrieve module consents from
-   * LastState. If consent is absetn in LastState, will send
-   * GetInteriorVehicleDataConsent to HMI. Otherwise will start process consents
-   * result.
+   * LastState. If consent is absent in LastState, will send
+   * GetInteriorVehicleDataConsent to HMI. Otherwise will start to process
+   * consent result.
    * @param module_type Module type
    * @param module_id Module ID
    */

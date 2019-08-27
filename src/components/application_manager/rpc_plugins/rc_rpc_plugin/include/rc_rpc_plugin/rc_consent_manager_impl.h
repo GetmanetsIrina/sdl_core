@@ -78,7 +78,7 @@ class RCConsentManagerImpl : public RCConsentManager {
       const rc_rpc_types::ModuleIdConsent& consent_to_save);
 
   /**
-   * @brief Checks, if module consent is expired
+   * @brief Checks if module consent is expired
    * @param module_consent Module consent
    * @return ModuleConsentState
    */
@@ -107,7 +107,8 @@ class RCConsentManagerImpl : public RCConsentManager {
   void RemoveModuleExpiredConsents(Json::Value& module_consents);
 
   /**
-   * @brief Get Remote Control section of LastState
+   * @brief Get Remote Control section of LastState.
+   * In case the section is absent, will be appended a new empty section.
    * @return Remote Control section of LastState in Json
    */
   Json::Value& GetRemoteControlDataOrAppend() const;
@@ -121,8 +122,8 @@ class RCConsentManagerImpl : public RCConsentManager {
       const std::string& mac_address) const;
 
   /**
-   * @brief Get AppConsentsList section of LastState for specified application
-   * In case consent list is absent will be appended new empty section
+   * @brief Get AppConsentsList section of LastState for specified application.
+   * In case the consent list is absent, will be appended a new empty section.
    * @param policy_app_id Application policy ID
    * @param mac_address Device MAC address
    * @return AppConsentsList of LastState in Json
@@ -133,7 +134,7 @@ class RCConsentManagerImpl : public RCConsentManager {
   /**
    * @brief Get Application consents section of Remote Control section of
    * LastState with all consents for all applications. In case if this section
-   * is absent, will be created new empty section
+   * is absent, will be created a new empty section
    * @return AppConsents section of RemoteControl section of LastState in Jason
    */
   Json::Value& GetAppsConsentsOrAppend() const;
@@ -141,8 +142,10 @@ class RCConsentManagerImpl : public RCConsentManager {
   /**
    * @brief Get all module resource consents for specified application and
    * module type. In case if section with specified module type consents is
-   * absent, will be created new empty section
+   * absent, will be created a new empty section
    * @param policy_app_id Application id which contains specified module type
+   * @param mac_adress MAC address of mobile device that needs user consent for
+   * acquiring resource
    * @param module_type Module type with consents
    */
   Json::Value& GetModuleTypeConsentsOrAppend(

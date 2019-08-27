@@ -50,7 +50,7 @@ class RCConsentManager {
   /**
    * @brief Saves consents (is_consented + date_of_consent) for module resources
    * (module_type + module_id) for specified application
-   * @param app_id Application id which module consents should be saved
+   * @param policy_app_id Application id which module consents should be saved
    * @param mac_address Device mac address
    * @param module_consents - Module resources consents
    */

@@ -115,7 +115,6 @@ class RCHelpers {
    * @param module_type Module type as string
    * @param module_ids Modules ids which needed consents from driver
    * @param allowed Consents for modules
-   * @param out_module_consents Collection for module consents
    */
   static rc_rpc_types::ModuleIdConsentVector FillModuleConsents(
       const std::string& module_type,
