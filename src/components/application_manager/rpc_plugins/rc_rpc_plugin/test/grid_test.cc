@@ -41,10 +41,10 @@ using namespace rc_rpc_plugin;
 TEST(Grid, IsLevelIntersectionExists) {
   Grid grid_level0{1, 1, 0, 1, 1, 1};
   Grid grid_level1{1, 1, 1, 1, 1, 1};
-  EXPECT_FALSE(grid_level0.IsLevelIntersectionExists(grid_level1));
+  EXPECT_FALSE(grid_level0.LevelIntersectionExists(grid_level1));
 
   Grid grid_level1_v2{1, 2, 1, 1, 2, 1};
-  EXPECT_TRUE(grid_level1.IsLevelIntersectionExists(grid_level1_v2));
+  EXPECT_TRUE(grid_level1.LevelIntersectionExists(grid_level1_v2));
 }
 
 TEST(Grid, TwoSameGrisAreEqual) {
@@ -59,14 +59,14 @@ TEST(Grid, IsIntersectionExists) {
   Grid grid_2{0, 0, 1, 0, 0, 1};
 
   // There is intersection but levels missmatch
-  EXPECT_FALSE(grid_1.IsIntersectionExists(grid_2));
+  EXPECT_FALSE(grid_1.IntersectionExists(grid_2));
 
   Grid grid_3{1, 0, 2, 0, 0, 0};
   // There isn't intersection but level match
-  EXPECT_FALSE(grid_1.IsIntersectionExists(grid_3));
+  EXPECT_FALSE(grid_1.IntersectionExists(grid_3));
 
   Grid grid_4{0, 1, 2, 1, 1, 1};
-  EXPECT_TRUE(grid_1.IsIntersectionExists(grid_4));
+  EXPECT_TRUE(grid_1.IntersectionExists(grid_4));
 }
 }  // namespace grid_test
 }  // namespace rc_rpc_plugin_test
