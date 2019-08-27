@@ -248,7 +248,7 @@ const char* kSecondaryTransportForWiFiKey = "SecondaryTransportForWiFi";
 const char* kAudioServiceTransportsKey = "AudioServiceTransports";
 const char* kVideoServiceTransportsKey = "VideoServiceTransports";
 const char* kRpcPassThroughTimeoutKey = "RpcPassThroughTimeout";
-const char* kPeriodForConsentExpireKey = "PeriodForConsentExpire";
+const char* kPeriodForConsentExpirationKey = "PeriodForConsentExpiration";
 
 const char* kDefaultTransportRequiredForResumptionKey =
     "DefaultTransportRequiredForResumption";
@@ -405,7 +405,7 @@ const std::string kAllowedSymbols =
 const bool kDefaultMultipleTransportsEnabled = false;
 const char* kDefaultLowBandwidthResumptionLevel = "NONE";
 const uint32_t kDefaultRpcPassThroughTimeout = 10000;
-const uint16_t kDefaultPeriodForConsentExpire = 30;
+const uint16_t kDefaultPeriodForConsentExpiration = 30;
 const char* kDefaultHMIOriginId = "HMI_ID";
 const std::vector<uint8_t> kDefaultBluetoothUUID = {0x93,
                                                     0x6D,
@@ -546,7 +546,7 @@ Profile::Profile()
     , wake_up_signal_offset_(kDefaultWakeUpSignalOffset)
     , ignition_off_signal_offset_(kDefaultIgnitionOffSignalOffset)
     , rpc_pass_through_timeout_(kDefaultRpcPassThroughTimeout)
-    , period_for_consent_expire_(kDefaultPeriodForConsentExpire) {
+    , period_for_consent_expiration_(kDefaultPeriodForConsentExpiration) {
   // SDL version
   ReadStringValue(
       &sdl_version_, kDefaultSDLVersion, kMainSection, kSDLVersionKey);
@@ -1150,8 +1150,8 @@ uint32_t Profile::rpc_pass_through_timeout() const {
   return rpc_pass_through_timeout_;
 }
 
-uint16_t Profile::period_for_consent_expire() const {
-  return period_for_consent_expire_;
+uint16_t Profile::period_for_consent_expiration() const {
+  return period_for_consent_expiration_;
 }
 
 const std::vector<std::string>& Profile::secondary_transports_for_bluetooth()
@@ -2386,13 +2386,13 @@ void Profile::UpdateValues() {
                     kRpcPassThroughTimeoutKey,
                     kAppServicesSection);
 
-  ReadUIntValue(&period_for_consent_expire_,
-                kDefaultPeriodForConsentExpire,
+  ReadUIntValue(&period_for_consent_expiration_,
+                kDefaultPeriodForConsentExpiration,
                 kRCModuleConsentSection,
-                kPeriodForConsentExpireKey);
+                kPeriodForConsentExpirationKey);
 
-  LOG_UPDATED_VALUE(period_for_consent_expire_,
-                    kPeriodForConsentExpireKey,
+  LOG_UPDATED_VALUE(period_for_consent_expiration_,
+                    kPeriodForConsentExpirationKey,
                     kRCModuleConsentSection);
 
   {  // Secondary Transports and ServicesMap
