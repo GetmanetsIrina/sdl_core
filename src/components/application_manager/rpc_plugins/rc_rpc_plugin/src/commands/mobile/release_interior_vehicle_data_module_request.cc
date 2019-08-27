@@ -75,7 +75,7 @@ void PrepareResponseResult(
     case rc_rpc_plugin::ResourceReleasedState::eType::NOT_ALLOCATED: {
       response_params_out.success_result = false;
       response_params_out.result_code = mobile_apis::Result::eType::IGNORED;
-      info_inserter("is not allocated to this application.");
+      info_inserter("is not allocated to any application.");
       break;
     }
   }
