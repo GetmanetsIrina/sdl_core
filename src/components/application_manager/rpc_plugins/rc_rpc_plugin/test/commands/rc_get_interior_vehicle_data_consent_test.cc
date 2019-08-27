@@ -152,7 +152,7 @@ class RCGetInteriorVehicleDataConsentTest
         .WillByDefault(Return(true));
     ON_CALL(mock_allocation_manager_, is_rc_enabled())
         .WillByDefault(Return(true));
-    ON_CALL(mock_rc_capabilities_manager_, CheckIfModuleExistInCapabilities(_))
+    ON_CALL(mock_rc_capabilities_manager_, CheckIfModuleExistsInCapabilities(_))
         .WillByDefault(Return(true));
   }
 
