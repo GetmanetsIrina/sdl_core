@@ -58,7 +58,7 @@ class ReleaseInteriorVehicleDataModuleResponse
 
   void Run() OVERRIDE;
 
-  ~ReleaseInteriorVehicleDataModuleResponse() OVERRIDE;
+  ~ReleaseInteriorVehicleDataModuleResponse();
 };
 
 }  // namespace commands

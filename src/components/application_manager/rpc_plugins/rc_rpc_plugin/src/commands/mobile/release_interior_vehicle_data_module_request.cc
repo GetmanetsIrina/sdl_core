@@ -53,13 +53,13 @@ struct ResponseParams {
 
 void PrepareResponseResult(
     ResponseParams& response_params_out,
-    rc_rpc_plugin::ResourceReleasedState::eType& realesed_result) {
+    rc_rpc_plugin::ResourceReleasedState::eType& released_result) {
   std::stringstream ss;
   auto info_inserter = [&ss, response_params_out](std::string info) {
     ss << "Module [" << response_params_out.module_type << ":"
        << response_params_out.module_id << "] " << info;
   };
-  switch (realesed_result) {
+  switch (released_result) {
     case rc_rpc_plugin::ResourceReleasedState::eType::IS_RELEASED: {
       response_params_out.success_result = true;
       response_params_out.result_code = mobile_apis::Result::eType::SUCCESS;
@@ -123,7 +123,7 @@ void ReleaseInteriorVehicleDataModuleRequest::Execute() {
   ApplicationSharedPtr app = application_manager_.application(connection_key());
   const uint32_t app_id = app->app_id();
 
-  ResourceReleasedState::eType realesed_result =
+  ResourceReleasedState::eType released_result =
       resource_allocation_manager_.ReleaseResource(
           module_type, module_id, app_id);
 
@@ -136,7 +136,7 @@ void ReleaseInteriorVehicleDataModuleRequest::Execute() {
                                  result_code,
                                  app_id,
                                  success_result};
-  PrepareResponseResult(response_params, realesed_result);
+  PrepareResponseResult(response_params, released_result);
 
   if (response_params.success_result) {
     resource_allocation_manager_.SendOnRCStatusNotifications(

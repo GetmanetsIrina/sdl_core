@@ -59,7 +59,7 @@ class ReleaseInteriorVehicleDataModuleRequest
 
   std::string ModuleId() const FINAL;
 
-  ~ReleaseInteriorVehicleDataModuleRequest() OVERRIDE;
+  ~ReleaseInteriorVehicleDataModuleRequest();
 
  private:
   bool ProcessCapabilities();
