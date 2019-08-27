@@ -510,17 +510,18 @@ class HMICapabilities {
   /**
    * @brief Sets available SeatLocation capabilities for further usage by
    * RC functionality
-   * @param seat_capability capabilities to set
+   * @param seat_location_capability capabilities to set
    */
-  virtual void set_seat_capability(
-      const smart_objects::SmartObject& seat_capability) = 0;
+  virtual void set_seat_location_capability(
+      const smart_objects::SmartObject& seat_location_capability) = 0;
 
   /**
-   * @brief seat_capability Retrieves information regarding the
+   * @brief seat_location_capability Retrieves information regarding the
    * seat location capability
    * @return smart object of seat location capability
    */
-  virtual const smart_objects::SmartObject* seat_capability() const = 0;
+  virtual const smart_objects::SmartObject* seat_location_capability()
+      const = 0;
 
   virtual void Init(resumption::LastState* last_state) = 0;
 

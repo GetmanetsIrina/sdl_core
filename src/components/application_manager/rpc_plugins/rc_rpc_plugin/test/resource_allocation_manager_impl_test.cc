@@ -144,7 +144,7 @@ class RAManagerTest : public ::testing::Test {
         static_cast<application_manager::AppExtensionUID>(
             rc_rpc_plugin::RCRPCPlugin::kRCPluginID));
     ON_CALL(mock_rc_capabilities_manager_,
-            GetDriverLocationFromSeatCapability())
+            GetDriverLocationFromSeatLocationCapability())
         .WillByDefault(Return(kDriverLocation));
     ON_CALL(*mock_rc_helpers_, GetRCExtension(_))
         .WillByDefault(Return(rc_app_extension_));

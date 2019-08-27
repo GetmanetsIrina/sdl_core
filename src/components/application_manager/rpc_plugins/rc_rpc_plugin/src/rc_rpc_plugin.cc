@@ -116,7 +116,8 @@ void RCRPCPlugin::OnApplicationEvent(
           std::shared_ptr<RCAppExtension>(new RCAppExtension(kRCPluginID));
       application->AddExtension(extension);
       const auto driver_location =
-          rc_capabilities_manager_->GetDriverLocationFromSeatCapability();
+          rc_capabilities_manager_
+              ->GetDriverLocationFromSeatLocationCapability();
       extension->SetUserLocation(driver_location);
       resource_allocation_manager_->SendOnRCStatusNotifications(
           NotificationTrigger::APP_REGISTRATION, application);

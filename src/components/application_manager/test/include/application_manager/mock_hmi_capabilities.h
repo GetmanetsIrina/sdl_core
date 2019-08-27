@@ -184,9 +184,11 @@ class MockHMICapabilities : public ::application_manager::HMICapabilities {
   MOCK_METHOD1(set_rc_capability,
                void(const smart_objects::SmartObject& rc_capability));
 
-  MOCK_CONST_METHOD0(seat_capability, const smart_objects::SmartObject*());
-  MOCK_METHOD1(set_seat_capability,
-               void(const smart_objects::SmartObject& seat_capability));
+  MOCK_CONST_METHOD0(seat_location_capability,
+                     const smart_objects::SmartObject*());
+  MOCK_METHOD1(
+      set_seat_location_capability,
+      void(const smart_objects::SmartObject& seat_location_capability));
 
   MOCK_METHOD1(Init, void(resumption::LastState* last_state));
 

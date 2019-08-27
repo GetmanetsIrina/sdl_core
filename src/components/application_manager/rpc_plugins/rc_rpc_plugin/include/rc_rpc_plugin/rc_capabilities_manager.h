@@ -134,7 +134,7 @@ class RCCapabilitiesManager {
 
   /**
    * @brief GetModuleServiceArea retrieves service area of module,
-   * if module serviceArea is missed in capabilities, serviseArea is
+   * if module serviceArea is missed in capabilities, serviceArea is
    * assumed to be the same as location, if location
    * is missed in capabilities, it is assumed that serviceArea covers
    * the whole area of vehicle
@@ -152,11 +152,11 @@ class RCCapabilitiesManager {
   virtual bool IsMultipleAccessAllowed(const ModuleUid& module) const = 0;
 
   /**
-   * @brief GetDriverLocationFromSeatCapability retrieves the driver's
-   * location from capabilities
+   * @brief GetDriverLocationFromSeatLocationCapability retrieves the driver's
+   * location from seat location capabilities
    * @return Grid of driver's location
    */
-  virtual const Grid GetDriverLocationFromSeatCapability() const = 0;
+  virtual const Grid GetDriverLocationFromSeatLocationCapability() const = 0;
 
   /**
    * @brief IsSeatLocationCapabilityProvided checks whether all necessary

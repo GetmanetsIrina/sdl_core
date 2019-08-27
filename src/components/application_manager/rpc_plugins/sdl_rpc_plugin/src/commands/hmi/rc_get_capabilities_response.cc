@@ -62,12 +62,13 @@ void RCGetCapabilitiesResponse::Run() {
         (*message_)[strings::msg_params][strings::rc_capability]);
   }
 
-  bool seat_capability_exists =
-      (*message_)[strings::msg_params].keyExists(strings::seat_capability);
+  bool seat_location_capability_exists =
+      (*message_)[strings::msg_params].keyExists(
+          strings::seat_location_capability);
 
-  if (seat_capability_exists) {
-    hmi_capabilities.set_seat_capability(
-        (*message_)[strings::msg_params][strings::seat_capability]);
+  if (seat_location_capability_exists) {
+    hmi_capabilities.set_seat_location_capability(
+        (*message_)[strings::msg_params][strings::seat_location_capability]);
   }
 
   hmi_capabilities.set_rc_supported(rc_capability_exists);

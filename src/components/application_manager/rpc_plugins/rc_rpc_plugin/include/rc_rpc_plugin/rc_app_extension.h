@@ -84,7 +84,13 @@ struct Grid {
            levelspan_ == grid.levelspan_;
   }
 
-  bool IsLevelIntersectionExists(const Grid& grid) const {
+  /**
+   * @brief LevelIntersectionExists checks if the grids have an
+   * intersection by levels.
+   * @param grid with wich to check intersection
+   * @return true if intersection exists, otherwise - false
+   */
+  bool LevelIntersectionExists(const Grid& grid) const {
     const int32_t top_level = (level_ + levelspan_) - 1;
     const int32_t grid_top_level = (grid.level_ + grid.levelspan_) - 1;
 
@@ -96,8 +102,18 @@ struct Grid {
     return true;
   }
 
-  bool IsIntersectionExists(const Grid& grid) const {
-    if (!IsLevelIntersectionExists(grid)) {
+  /**
+   * @brief IntersectionExists checks if the grids have an
+   * intersection. Grid can be represented by its bottom-left
+   * and top-right coordinates like a rectangle. First, the
+   * coordinates of the intersection are calculated, then checked
+   * that the rectangle wgich is formed by the intersections of two
+   * grids has non-zero width and height.
+   * @param grid with wich to check intersection
+   * @return true if intersection exists, otherwise - false
+   */
+  bool IntersectionExists(const Grid& grid) const {
+    if (!LevelIntersectionExists(grid)) {
       return false;
     }
 
@@ -169,14 +185,14 @@ class RCAppExtension : public application_manager::AppExtension {
   /**
    * @brief SetUserLocation sets user location
    * from object to the grid
-   * @param smart object user_location
+   * @param user_location smart object for user_location
    */
   void SetUserLocation(
       const ns_smart_device_link::ns_smart_objects::SmartObject& user_location);
 
   /**
    * @brief SetUserLocation sets user location from grid
-   * @param grid of user_location
+   * @param grid grid of user_location
    */
   void SetUserLocation(const Grid& grid);
 

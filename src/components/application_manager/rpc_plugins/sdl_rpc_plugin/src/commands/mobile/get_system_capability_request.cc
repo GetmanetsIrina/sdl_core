@@ -134,9 +134,10 @@ void GetSystemCapabilityRequest::Run() {
       break;
     }
     case mobile_apis::SystemCapabilityType::SEAT_LOCATION: {
-      if (hmi_capabilities.seat_capability()) {
-        response_params[strings::system_capability][strings::seat_capability] =
-            *hmi_capabilities.seat_capability();
+      if (hmi_capabilities.seat_location_capability()) {
+        response_params[strings::system_capability]
+                       [strings::seat_location_capability] =
+                           *hmi_capabilities.seat_location_capability();
       } else {
         SendResponse(false, mobile_apis::Result::DATA_NOT_AVAILABLE);
         return;

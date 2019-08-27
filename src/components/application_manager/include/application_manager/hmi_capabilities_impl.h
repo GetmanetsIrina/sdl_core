@@ -501,10 +501,10 @@ class HMICapabilitiesImpl : public HMICapabilities {
 
   const smart_objects::SmartObject* rc_capability() const OVERRIDE;
 
-  void set_seat_capability(
-      const smart_objects::SmartObject& seat_capability) OVERRIDE;
+  void set_seat_location_capability(
+      const smart_objects::SmartObject& seat_location_capability) OVERRIDE;
 
-  const smart_objects::SmartObject* seat_capability() const OVERRIDE;
+  const smart_objects::SmartObject* seat_location_capability() const OVERRIDE;
 
   void Init(resumption::LastState* last_state) OVERRIDE;
 
@@ -590,7 +590,7 @@ class HMICapabilitiesImpl : public HMICapabilities {
   smart_objects::SmartObject* phone_capability_;
   smart_objects::SmartObject* video_streaming_capability_;
   smart_objects::SmartObject* rc_capability_;
-  smart_objects::SmartObject* seat_capability_;
+  smart_objects::SmartObject* seat_location_capability_;
 
   ApplicationManager& app_mngr_;
   HMILanguageHandler hmi_language_handler_;

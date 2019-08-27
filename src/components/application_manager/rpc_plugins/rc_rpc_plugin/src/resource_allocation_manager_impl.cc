@@ -160,9 +160,9 @@ bool ResourceAllocationManagerImpl::IsUserLocationValid(
   const auto module_service_area =
       rc_capabilities_manager_.GetModuleServiceArea(module);
   const auto driver =
-      rc_capabilities_manager_.GetDriverLocationFromSeatCapability();
+      rc_capabilities_manager_.GetDriverLocationFromSeatLocationCapability();
   const bool is_driver = user_location == driver;
-  if (is_driver || user_location.IsIntersectionExists(module_service_area)) {
+  if (is_driver || user_location.IntersectionExists(module_service_area)) {
     return true;
   }
   LOG4CXX_DEBUG(logger_, "User location is not valid");

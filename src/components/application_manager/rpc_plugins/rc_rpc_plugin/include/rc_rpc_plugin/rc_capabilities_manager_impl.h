@@ -74,7 +74,7 @@ class RCCapabilitiesManagerImpl : public RCCapabilitiesManager {
 
   bool IsMultipleAccessAllowed(const ModuleUid& module) const FINAL;
 
-  const Grid GetDriverLocationFromSeatCapability() const FINAL;
+  const Grid GetDriverLocationFromSeatLocationCapability() const FINAL;
 
   bool IsSeatLocationCapabilityProvided() const FINAL;
 

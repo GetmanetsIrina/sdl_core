@@ -767,17 +767,17 @@ bool RCCapabilitiesManagerImpl::AreAllParamsReadOnly(
 
 bool RCCapabilitiesManagerImpl::IsSeatLocationCapabilityProvided() const {
   LOG4CXX_AUTO_TRACE(logger_);
-  auto seat_capability = hmi_capabilities_.seat_capability();
-  if (!seat_capability || seat_capability->empty()) {
+  auto seat_location_capability = hmi_capabilities_.seat_location_capability();
+  if (!seat_location_capability || seat_location_capability->empty()) {
     LOG4CXX_DEBUG(logger_, "Seat Location capability is not provided by HMI");
     return false;
   }
 
-  if (seat_capability->keyExists(strings::kRows) &&
-      seat_capability->keyExists(strings::kCols) &&
-      seat_capability->keyExists(strings::kLevels) &&
-      seat_capability->keyExists(strings::kSeats)) {
-    const auto* seats = (*seat_capability)[strings::kSeats].asArray();
+  if (seat_location_capability->keyExists(strings::kRows) &&
+      seat_location_capability->keyExists(strings::kCols) &&
+      seat_location_capability->keyExists(strings::kLevels) &&
+      seat_location_capability->keyExists(strings::kSeats)) {
+    const auto* seats = (*seat_location_capability)[strings::kSeats].asArray();
     if (!seats->empty()) {
       return true;
     }
@@ -789,13 +789,14 @@ bool RCCapabilitiesManagerImpl::IsSeatLocationCapabilityProvided() const {
   return false;
 }
 
-const Grid RCCapabilitiesManagerImpl::GetDriverLocationFromSeatCapability()
-    const {
+const Grid
+RCCapabilitiesManagerImpl::GetDriverLocationFromSeatLocationCapability() const {
   LOG4CXX_AUTO_TRACE(logger_);
   Grid grid;
   if (IsSeatLocationCapabilityProvided()) {
-    auto seat_capability = hmi_capabilities_.seat_capability();
-    const auto* seats = (*seat_capability)[strings::kSeats].asArray();
+    auto seat_location_capability =
+        hmi_capabilities_.seat_location_capability();
+    const auto* seats = (*seat_location_capability)[strings::kSeats].asArray();
     const auto& driver_seat = (*seats)[0];
     if (driver_seat.keyExists(strings::kGrid)) {
       const auto& driver_location = driver_seat[strings::kGrid];
@@ -813,17 +814,18 @@ const Grid RCCapabilitiesManagerImpl::GetDriverLocationFromSeatCapability()
 }
 
 Grid RCCapabilitiesManagerImpl::GridWholeVehicleArea() const {
-  auto seat_capability = *(hmi_capabilities_.seat_capability());
-  int32_t colspan = seat_capability.keyExists(strings::kCols)
-                        ? seat_capability[strings::kCols].asInt()
+  auto seat_location_capability =
+      *(hmi_capabilities_.seat_location_capability());
+  int32_t colspan = seat_location_capability.keyExists(strings::kCols)
+                        ? seat_location_capability[strings::kCols].asInt()
                         : 0;
 
-  int32_t rowspan = seat_capability.keyExists(strings::kRows)
-                        ? seat_capability[strings::kRows].asInt()
+  int32_t rowspan = seat_location_capability.keyExists(strings::kRows)
+                        ? seat_location_capability[strings::kRows].asInt()
                         : 0;
 
-  int32_t levelspan = seat_capability.keyExists(strings::kLevels)
-                          ? seat_capability[strings::kLevels].asInt()
+  int32_t levelspan = seat_location_capability.keyExists(strings::kLevels)
+                          ? seat_location_capability[strings::kLevels].asInt()
                           : 0;
   return Grid(0, 0, 0, colspan, rowspan, levelspan);
 }

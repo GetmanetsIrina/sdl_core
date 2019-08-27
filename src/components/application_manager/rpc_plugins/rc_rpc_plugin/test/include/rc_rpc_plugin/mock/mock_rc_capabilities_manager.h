@@ -80,7 +80,7 @@ class MockRCCapabilitiesManager : public rc_rpc_plugin::RCCapabilitiesManager {
   MOCK_CONST_METHOD1(IsMultipleAccessAllowed,
                      bool(const rc_rpc_plugin::ModuleUid&));
 
-  MOCK_CONST_METHOD0(GetDriverLocationFromSeatCapability,
+  MOCK_CONST_METHOD0(GetDriverLocationFromSeatLocationCapability,
                      const rc_rpc_plugin::Grid());
 
   MOCK_CONST_METHOD0(IsSeatLocationCapabilityProvided, bool());
