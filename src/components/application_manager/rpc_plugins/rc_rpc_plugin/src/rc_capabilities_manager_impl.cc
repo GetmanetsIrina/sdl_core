@@ -97,7 +97,7 @@ const std::string RCCapabilitiesManagerImpl::GetDefaultModuleIdFromCapabilities(
   if (!rc_capabilities.keyExists(mapping(module_type))) {
     LOG4CXX_WARN(
         logger_,
-        "There are no capability for requested module_type " << module_type);
+        "There is no RC capability for requested module_type " << module_type);
     return "";
   }
   if (enums_value::kHmiSettings == module_type ||

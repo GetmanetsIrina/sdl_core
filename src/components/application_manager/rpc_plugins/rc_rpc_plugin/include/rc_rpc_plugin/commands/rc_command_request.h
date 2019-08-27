@@ -98,6 +98,7 @@ class RCCommandRequest : public app_mngr::commands::CommandRequestImpl {
    * This is default implementation which has to be redefined for RPCs which
    * need to manage the resources
    * @param module_type Resource name
+   * @param module_id Resource id
    * @return True if free, otherwise - false
    */
   virtual bool IsResourceFree(const std::string& module_type,

@@ -62,6 +62,7 @@ class SetInteriorVehicleDataRequest : public RCCommandRequest {
   /**
    * @brief IsResourceFree check resource state
    * @param module_type Resource name
+   * @param module_id Resource id
    * @return True if free, otherwise - false
    */
   bool IsResourceFree(const std::string& module_type,

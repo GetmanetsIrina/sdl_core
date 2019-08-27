@@ -118,7 +118,7 @@ class RCCapabilitiesManager {
 
   /**
    * @brief GetDefaultModuleIdFromCapabilities returns the moduleId
-   * from the fist item published by xyz-ControlCapabilities
+   * from the first item published by xyz-ControlCapabilities
    * @param module_type resource name
    * @return default module id from HMI capabilities
    */
