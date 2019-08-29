@@ -238,7 +238,7 @@ void SetInteriorVehicleDataRequest::on_event(
           mobile_apis::Result::WARNINGS);
 
   smart_objects::SmartObject response_params;
-  bool is_resource_aquired = false;
+  bool is_resource_acquired = false;
 
   if (result) {
     if (!IsModuleIdProvided(hmi_response)) {
@@ -261,13 +261,20 @@ void SetInteriorVehicleDataRequest::on_event(
 
     const rc_rpc_types::ModuleUid resource{module_type, module_id};
     auto app = application_manager_.application(connection_key());
+
+    if (!app) {
+      LOG4CXX_ERROR(logger_, "NULL pointer.");
+      SendResponse(false, mobile_apis::Result::APPLICATION_NOT_REGISTERED, "");
+      return;
+    }
+
     const auto app_id = app->app_id();
 
     if (!resource_allocation_manager_.IsResourceAlreadyAcquiredByApp(resource,
                                                                      app_id)) {
       resource_allocation_manager_.SetResourceAcquired(
           module_type, module_id, app_id);
-      is_resource_aquired = true;
+      is_resource_acquired = true;
     }
 
   } else {
@@ -280,7 +287,7 @@ void SetInteriorVehicleDataRequest::on_event(
   SendResponse(
       result, result_code, info.c_str(), result ? &response_params : nullptr);
 
-  if (is_resource_aquired) {
+  if (is_resource_acquired) {
     resource_allocation_manager_.SendOnRCStatusNotifications(
         NotificationTrigger::MODULE_ALLOCATION,
         std::shared_ptr<application_manager::Application>());
