@@ -191,7 +191,7 @@ class RCCapabilitiesManagerImpl : public RCCapabilitiesManager {
   bool IsMultipleAccessAllowedInControlCaps(
       const smart_objects::SmartObject& control_capabilities) const;
 
-  Grid GridWholeVehicleArea() const;
+  Grid GetWholeVehicleArea() const;
 
   application_manager::HMICapabilities& hmi_capabilities_;
 };

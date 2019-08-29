@@ -813,7 +813,7 @@ RCCapabilitiesManagerImpl::GetDriverLocationFromSeatLocationCapability() const {
   return grid;
 }
 
-Grid RCCapabilitiesManagerImpl::GridWholeVehicleArea() const {
+Grid RCCapabilitiesManagerImpl::GetWholeVehicleArea() const {
   auto seat_location_capability =
       *(hmi_capabilities_.seat_location_capability());
   int32_t colspan = seat_location_capability.keyExists(strings::kCols)
@@ -844,7 +844,7 @@ Grid RCCapabilitiesManagerImpl::GetModuleLocationFromControlCapability(
                 location[strings::kRowspan].asInt(),
                 location[strings::kLevelspan].asInt());
   }
-  return GridWholeVehicleArea();
+  return GetWholeVehicleArea();
 }
 
 Grid RCCapabilitiesManagerImpl::GetModuleServiceAreaFromControlCapability(
