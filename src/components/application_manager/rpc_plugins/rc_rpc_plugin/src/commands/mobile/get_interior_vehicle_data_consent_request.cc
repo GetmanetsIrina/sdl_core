@@ -65,7 +65,7 @@ void GetInteriorVehicleDataConsentRequest::Execute() {
 
   if (msg_params[message_params::kModuleIds].empty()) {
     LOG4CXX_DEBUG(logger_,
-                  "ModuleIds collection is empty. Will be added default "
+                  "ModuleIds collection is empty. Will be add default "
                   "module_id from capabilities");
 
     const auto module_id =
