@@ -394,7 +394,8 @@ bool PolicyManagerImpl::LoadPT(const std::string& file,
     }
     CheckPermissionsChangesAfterUpdate(*pt_update, *policy_table_snapshot);
 
-    CheckPermissionsChanges(pt_update, policy_table_snapshot);
+    const auto results =
+        CheckPermissionsChanges(pt_update, policy_table_snapshot);
 
     ProcessAppPolicyCheckResults(
         results, pt_update->policy_table.app_policies_section.apps);
