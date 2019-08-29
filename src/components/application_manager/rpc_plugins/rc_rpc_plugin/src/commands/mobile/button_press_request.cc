@@ -113,11 +113,11 @@ void ButtonPressRequest::Execute() {
                  "Request module type and button name mismatch!");
   } else {
     LOG4CXX_WARN(logger_,
-                 "Requested button or module is not exists in capabilities!");
+                 "Requested button or module does not exist in capabilities!");
     SetResourceState(module_type, ResourceState::FREE);
     SendResponse(false,
                  mobile_apis::Result::UNSUPPORTED_RESOURCE,
-                 "Requested button or module is not exists in capabilities!");
+                 "Requested button or module does not exist in capabilities!");
   }
 }
 
