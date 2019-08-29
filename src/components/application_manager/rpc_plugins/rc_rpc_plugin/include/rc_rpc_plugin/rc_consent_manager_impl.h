@@ -115,6 +115,7 @@ class RCConsentManagerImpl : public RCConsentManager {
 
   /**
    * @brief Gets Device applications section for specified device mac adress
+   * In case the section is absent, will be appended a new empty section.
    * @param mac_aress Device MAC adress
    * @return Device applications section of LastState in Json
    */
