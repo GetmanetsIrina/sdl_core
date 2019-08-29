@@ -69,8 +69,8 @@ class RCConsentManagerImpl : public RCConsentManager {
  private:
   /**
    * @brief Saves module consents for specified application
-   * @param app_module_consents Application consents to which should be added
-   * new consents or rewrote exist
+   * @param app_module_consents Application consents for which new
+   * consents should be added or existing ones should be overwritten
    * @param consent_to_save module consents which should be saved
    */
   void SaveAppModuleConsent(
