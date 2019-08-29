@@ -87,7 +87,7 @@ struct Grid {
   /**
    * @brief LevelIntersectionExists checks if the grids have an
    * intersection by levels.
-   * @param grid with wich to check intersection
+   * @param grid with which to check intersection
    * @return true if intersection exists, otherwise - false
    */
   bool LevelIntersectionExists(const Grid& grid) const {
@@ -107,9 +107,9 @@ struct Grid {
    * intersection. Grid can be represented by its bottom-left
    * and top-right coordinates like a rectangle. First, the
    * coordinates of the intersection are calculated, then checked
-   * that the rectangle wgich is formed by the intersections of two
+   * that the rectangle which is formed by the intersections of two
    * grids has non-zero width and height.
-   * @param grid with wich to check intersection
+   * @param grid with which to check intersection
    * @return true if intersection exists, otherwise - false
    */
   bool IntersectionExists(const Grid& grid) const {
