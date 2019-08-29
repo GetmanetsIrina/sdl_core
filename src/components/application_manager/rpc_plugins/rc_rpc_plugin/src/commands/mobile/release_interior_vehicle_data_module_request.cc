@@ -121,6 +121,13 @@ void ReleaseInteriorVehicleDataModuleRequest::Execute() {
   const std::string module_id = ModuleId();
 
   ApplicationSharedPtr app = application_manager_.application(connection_key());
+
+  if (!app) {
+    LOG4CXX_ERROR(logger_, "Application is not registered");
+    SendResponse(false, mobile_apis::Result::APPLICATION_NOT_REGISTERED);
+    return;
+  }
+
   const uint32_t app_id = app->app_id();
 
   ResourceReleasedState::eType released_result =
@@ -131,7 +138,7 @@ void ReleaseInteriorVehicleDataModuleRequest::Execute() {
   mobile_apis::Result::eType result_code = mobile_apis::Result::eType::SUCCESS;
   std::string response_info;
   ResponseParams response_params{response_info,
-                                 ModuleType(),
+                                 module_type,
                                  module_id,
                                  result_code,
                                  app_id,
